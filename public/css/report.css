@@ -1,0 +1,94 @@
+@font-face {
+    font-family: khmoul;
+    src: url('../fonts/KhmerOSmuollight.ttf');
+}
+
+page {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+
+    .moul {
+        font-family: khmoul !important;
+    }
+}
+
+.for_th {
+    border: none !important;
+    /* background-color: #4e5761 !important; */
+}
+
+.t_objective {
+    width: 55% !important;
+}
+
+.moul {
+    font-family: khmoul !important;
+}
+
+page[size="A4"] {
+    width: 32cm;
+    height: 29.7cm;
+    background-color: #ffff !important;
+    box-shadow: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+@media print {
+    * {
+        box-shadow: none !important;
+        font-size: 20px !important;
+    }
+    .hideprint{
+        display: none;
+    }
+    body * {
+        background: #fff !important;
+    }
+
+    body,
+    page {
+        margin: 0;
+        box-shadow: none !important;
+       
+    }
+
+    body .for_image {
+        width: 150px !important;
+    }
+
+    body .for_th {
+        border: none !important;
+        background-color: #c9c9ca !important;
+    }
+
+    body .text_color {
+        color: blue !important;
+    }
+
+    body td {
+        border-bottom-color: #92a8d1 !important;
+    }
+
+    body .text-sub {
+        font-size: 20px !important;
+    }
+
+    body .text-head {
+        font-size: 30px !important;
+    }
+
+    body .text-head-sub {
+        font-size: 25px !important;
+    }
+
+    #search_block {
+        display: none !important;
+    }
+
+    .moul {
+        font-family: khmoul !important;
+    }
+
+}

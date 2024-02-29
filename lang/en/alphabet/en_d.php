@@ -1,0 +1,28 @@
+<?php
+$en_d = [
+    'Durations' => 'Durations',
+    'Description' => 'Description',
+    'Disabled' => 'Disabled',
+	'Dashboard' => 'Dashboard',
+	'Delete' => 'Delete',
+	'District' => 'District',
+	'Districts' => 'Districts',
+	'Departure Date' => 'Departure Date',
+	'Delay' => 'Delay',
+	'Date of Birth' => 'Date of Birth',
+	'Driving License' => 'Driving License',
+	'DOB' => 'DOB',
+	'Debt Amount' => 'Debt Amount',
+	'Date' => 'Date',
+	'Data has been updated successfully' => 'Data has been updated successfully',
+	'Do not have' => 'Do not have',
+	'Divorce' => 'Divorce',
+	'Do you have a physical illness?' => 'Do you have a physical illness?',
+	'Do not know' => 'Do not know',
+	'Do you have a spouse working with' => 'Do you have a spouse working with',
+	'Data save successfull' => 'Data save successfull',
+	'Data updated successfully' => 'Data updated successfully',
+	'Deleted successfully' => 'Deleted successfully',
+	'Deleted successfully.' => 'Deleted successfully.',
+	'GREETINGTEXT'
+];

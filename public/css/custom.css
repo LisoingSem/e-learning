@@ -1,0 +1,77 @@
+
+@font-face {
+    font-family: khmoul;
+    src: url("../fonts/KhmerOSmuollight.ttf");
+}
+@font-face {
+    font-family: khcontent;
+    src: url("../fonts/KhmerOSsiemreap.ttf");
+}
+@font-face {
+    font-family: khb;
+    src: url("../fonts/KhmerOSbokor.ttf");
+}
+@font-face {
+    font-family: 'tacteng';
+    src: url("../fonts/TACTENG.TTF");
+}
+
+/* dropdown in datatable  */
+.dataTables_scrollBody{
+    overflow: visible !important;
+}
+
+.font-tacteng{
+    font-family: tacteng;
+}
+.khmer_battambang{
+    font-family: khcontent, 'Battambang', cursive;
+}
+.khmer_moul{
+    font-family: khmoul, 'Moul', cursive;
+}
+.khb{
+    font-family: khb, 'Moul', cursive;
+}
+.menuActive{
+    background-color: #1f65a6 !important;
+}
+.text-default{
+    color: #0187c1 !important;
+}
+.bg-default{
+    background-color: #0187c1 !important;
+    color: #fff !important;
+}
+.bg-default *{
+    color: #fff !important;
+}
+.bg_thead{
+    background-color: #d2d9e3 !important;
+}
+.dataTables_scrollHeadInner, .table{
+    width:100%!important
+
+}
+.datatable > thead *{
+    text-align: center !important;
+    font-weight: bolder !important;
+    background-color: #d2d9e3;
+}
+.datatable > tbody *{
+    vertical-align: middle;
+    font-size: 0.96em;
+}
+.datatable > tbody > tr td:nth-child(1){
+    text-align: center !important;
+}
+.sticky_top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50;
+  z-index: 999;
+}
+select {
+    padding: 0rem 0.75rem !important;
+}
+
