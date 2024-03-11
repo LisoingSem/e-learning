@@ -1,9 +1,11 @@
 <?php
 
 $en_t = [
+    'Thumbnail' => 'រូបភាព',
     'Trash' => 'ធុងសម្រាម',
     'Total Hours' => 'ម៉ោងសរុប',
     'Trainner' => 'គ្រូបង្រៀន',
+    'Trainner Details' => 'ព័ត៌មានលម្អិតអំពីគ្រូបង្រៀន',
 	'Translation' => 'ការបកប្រែ',
 	'to blacklist' => 'ចូលបញ្ជីខ្មៅ',
 	'Total Workers' => 'កម្មករសរុប',

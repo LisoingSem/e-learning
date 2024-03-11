@@ -1,11 +1,12 @@
 @extends('layouts.master')
 
-@section('page_title', __('lb.Trainner'))
+@section('page_title',  'Trainners')
 @section('directory', __('lb.Trainner'))
 
 @section('css')
 <style>
     #dataTable tbody tr td:nth-child(3),
+    td:nth-child(2),
     td:nth-child(7),
     td:nth-child(8) {
         text-align: center;
@@ -48,13 +49,13 @@
                     <thead class="bg-light">
                         <tr>
                             <th width="70px">{{__('lb.No.')}}</th>
-                            <th width="40px">{{__('lb.Logo')}}</th>
+                            <th width="40px">{{__('lb.Photo')}}</th>
                             <th>{{__('lb.Gender')}}</th>
                             <th>{{__('lb.Name')}}</th>
                             <th>{{__('lb.Phone')}}</th>
                             <th>{{__('lb.Email')}}</th>
                             <th width="100">{{__('lb.Status')}}</th>
-                            <th width="100">{{__('lb.Action')}}</th>
+                            <th width="20"></th>
                         </tr>
                     </thead>
                 </table>
@@ -80,8 +81,8 @@
 
         var table = $('#dataTable').DataTable({
             lengthMenu: [
-                [20, 50, 100, 1000],
-                [20, 50, 100, 1000]
+                [10, 20, 50, 100],
+                [10, 20, 50, 100]
             ],
             processing: true,
             serverSide: true,
@@ -122,7 +123,16 @@
                     orderable: false,
                     searchable: false
                 },
-            ]
+            ],
+            drawCallback: function(settings) {
+                var data = table.rows().data();
+                var dropdownMenu = $('.dropdown-menu');
+                if (data.length < 3) {
+                    dropdownMenu.addClass('custom');
+                } else {
+                    dropdownMenu.removeClass('custom');
+                }
+            }
         });
 
     });
@@ -130,15 +140,19 @@
     function detailsRow(obj){
         $.ajax({
             type: 'GET',
-            url: "{{route('trainner.deatil')}}",
+            url: "{{route('trainner.details')}}",
             data: {
                 key: $(obj).attr('key'),
             },
             success: function(res)
             {
+                var genderEnText = (res.data.trainner.gender === 1 ? 'Male' : 'Female');
+                var genderKhText = (res.data.trainner.gender === 1 ? 'ប្រុស' : 'ស្រី');
+                var yearEnText = (res.data.trainner.year_experience > 1  ? ' years' : ' year');
+                var yearKhText = ('ឆ្នាំ');
+                $('#dyear_experience').val(res.data.trainner.year_experience + (lang == 'kh' ? yearKhText : yearEnText ));
                 $('#dname').val(res.data.trainner.name);
-                $('#dyear_experience').val(res.data.trainner.year_experience);
-                $('#dgender').val(res.data.trainner.gender);
+                $('#dgender').text((lang == 'kh') ? genderKhText : genderEnText);
                 $('#demail').val(res.data.trainner.email);
                 $('#dphone_number').val(res.data.trainner.phone_number);
                 $('#dskills').val(res.data.trainner.skills);

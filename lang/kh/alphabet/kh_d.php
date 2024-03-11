@@ -2,6 +2,8 @@
 
 $en_d = [
     'Durations' => 'ពេលវេលា',
+    'Details' => 'ព័ត៌មានលម្អិត',
+    'Documents' => 'ឯកសារ',
     'Description' => 'ការពិពណ៌នា',
     'Disabled' => 'ផ្អាក់ដំណើរការ',
 	'Dashboard' => 'ទំព័រដើម',

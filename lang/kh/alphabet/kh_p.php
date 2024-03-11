@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 $en_p = [
+    'Photo' => 'រូបភាព',
 	'Password' => 'លេខសម្ងាត់',
 	'Please enter your password' => 'សូមបញ្ចូលលេខសម្ងាត់របស់អ្នក',
 	'Please enter your username' => 'សូមបបញ្ចូលគណនីរបស់អ្នក',

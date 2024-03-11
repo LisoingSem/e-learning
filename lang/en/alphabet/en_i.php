@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 $en_i = [
+    'Information Details' => 'Information Details',
 	'Invoices' => 'Invoices',
 	'In Months' => 'In Months',
 	'Is this information correct?' => 'Is this information correct?',

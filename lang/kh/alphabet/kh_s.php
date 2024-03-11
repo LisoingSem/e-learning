@@ -1,6 +1,7 @@
 <?php
 
 $en_s = [
+    'Skills' => 'ជំនាញ',
     'Short Description' => 'ពិពណ៌នាខ្លី',
 	'Save' => 'រក្សាទុក',
 	'Save Change' => 'រក្សាទុកការផ្លាស់ប្តូរ',

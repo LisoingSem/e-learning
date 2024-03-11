@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 $en_i = [
+    'Information Details' => 'ព័ត៌មានលំអិត',
 	'Invoice' => 'វិក្កយបត្រ',
 	'Invoice No.' => 'លេខវិក្កយបត្រ',
 	'Invoices' => 'វិក្កយបត្រ',

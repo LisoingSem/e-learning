@@ -37,7 +37,7 @@ class BaseModel extends Model
                 'sms' =>  __('form.message.error'),
             ]);
         }
-    }
+}
 
     public static function updateData($tbl, $id, $data)
     {
@@ -49,6 +49,7 @@ class BaseModel extends Model
             if (Schema::hasColumn($tbl, 'updated_date')) {
                 $data['updated_date'] = Carbon::now();
             }
+
             // update data
             DB::table($tbl)
                 ->where('id', $id)
@@ -56,7 +57,7 @@ class BaseModel extends Model
 
             return (object)[
                 'status' => 200,
-                'data' => null,
+                'data' => $id,
                 'sms' => __('form.message.update.success'),
             ];
         } catch (Exception $e) {

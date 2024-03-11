@@ -1,20 +1,19 @@
 @extends('layouts.master')
 
-@section('page_title', 'Courses')
-@section('directory', __('lb.Courses'))
+@section('page_title',  'Documents')
+@section('directory', __('lb.Documents'))
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 
 <style>
-    tbody tr td:nth-child(3),
-    td:nth-child(10),
-    td:nth-child(11),
-    {
-    text-align: center;
+
+    tbody tr td:nth-child(8),
+    td:nth-child(9) {
+        text-align: center;
     }
 
-    .dataTables_wrapper .row:nth-child(2) {
+    .dataTables_wrapper .row:nth-child(2){
         overflow-y: scroll;
     }
 
@@ -26,19 +25,19 @@
     <div class="card-body">
         <div class="row mb-3">
             <div class="col-sm-12 d-flex justify-content-end" style="gap: 10px">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#createModal" id="createButton">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#createModal">
                     <i class="fa fa-plus-circle"></i>
                     {{__('lb.Create')}}
                 </button>
                 <button class="btn btn-outline-warning" id="disableButton"
-                    onclick="disabledData('{{ route('course.data') }}')">
+                    onclick="disabledData('{{ route('document.data') }}')">
                     <i class="fa fa-exclamation-triangle"></i> {{ __('lb.Hidden') }}
                 </button>
                 <button class="btn btn-outline-danger" id="trushButton"
-                    onclick="trushData('{{ route('course.data') }}')">
+                    onclick="trushData('{{ route('document.data') }}')">
                     <i class="fa fa-trash"></i> {{ __('lb.Trash') }}
                 </button>
-                <button class="btn btn-success" id="refreshButton" onclick="refreshData('{{ route('course.data') }}')">
+                <button class="btn btn-success" id="refreshButton" onclick="refreshData('{{ route('document.data') }}')">
                     <i class="fa fa-spinner"></i>
                 </button>
             </div>
@@ -46,43 +45,36 @@
 
         <div class="row">
             <div class="col-sm-12">
-                {{--<div class="table-responsive">--}}
-                    <table class="table table-sm table-bordered datatable" class="display" id='dataTable'
-                        style="overflow-x: scroll" style="width: 100%;">
+                    <table class="table table-sm table-bordered datatable" class="display" id='dataTable' style="overflow-x: scroll"
+                        style="width: 100%;">
                         <thead class="bg-light">
                             <tr>
                                 <th width="70px">{{__('lb.No.')}}</th>
-                                <th width="40px">{{__('lb.Thumbnail')}}</th>
-                                <th>{{__('lb.Code')}}</th>
-                                <th>{{__('lb.English Name')}}</th>
-                                <th>{{__('lb.Course Category')}}</th>
+                                <th>{{__('lb.Thumbnail')}}</th>
+                                <th>{{__('lb.Khmer Name')}}</th>
+                                <th>{{__('lb.Courses')}}</th>
                                 <th>{{__('lb.Trainner')}}</th>
-                                <th>{{__('lb.Price')}}</th>
-                                <th>{{__('lb.Total Hours')}}</th>
-                                <th>{{__('lb.Ordering')}}</th>
                                 <th width="10">{{__('lb.Status')}}</th>
                                 <th width="10"></th>
                             </tr>
                         </thead>
                     </table>
-                    {{--
-                </div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
 </div>
 
-@include('courses.create')
-@include('courses.edit')
+@include('documents.create')
+@include('documents.edit')
 
 @endsection
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
-
-     $('.select_trainner').selectpicker();
-    $('.select_course').selectpicker();
+    $('.select_trainner').selectpicker();
+    $('.select_course   ').selectpicker();
 
     $(document).ready(function () {
 
@@ -96,29 +88,13 @@
             ],
             processing: true,
             serverSide: true,
-            ajax: "{{ route('course.data') }}",
+            ajax: "{{ route('document.data') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
-                {data: 'thumbnail', name: 'thumbnail',  searchable: false, orderable: false},
-                {data: 'code', name: 'code',     },
                 {data: 'name_en', name: 'name_en'},
-                {data: 'categories_name'},
+                {data: 'name_kh', name: 'name_kh'},
+                {data: 'course_name', name: 'course_name'},
                 {data: 'trainner_name', name: 'trainner_name'},
-                {
-                    data: 'price',
-                    name: 'courses.price',
-                    render: function(data) {
-                    return data + '$';
-                    }
-                },
-                {
-                    data: 'total_hours',
-                    name: 'courses.total_hours',
-                    render: function(data) {
-                    return data + 'h';
-                    }
-                },
-                {data: 'ordering', name: 'ordering'},
                 {
                     data: 'status',
                     name: 'status',
@@ -140,57 +116,24 @@
                 },
             ],
             drawCallback: function(settings) {
-            var data = table.rows().data();
-            var dropdownMenu = $('.dropdown-list');
-            if (data.length < 3) {
-                dropdownMenu.addClass('custom');
-            } else {
-                dropdownMenu.removeClass('custom');
-            }
+                var data = table.rows().data();
+                var dropdownMenu = $('.dropdown-list');
+                if (data.length < 3) {
+                    dropdownMenu.addClass('custom');
+                } else {
+                    dropdownMenu.removeClass('custom');
+                }
             }
         });
 
     });
-
-
-    function detailsRow(obj){
-        $.ajax({
-            type: 'GET',
-            url: "{{route('course.edit')}}",
-            data: {
-                key: $(obj).attr('key'),
-            },
-            success: function(res)
-            {
-                $('#dcode').val(res.data.code);
-                $('#dtotal_hours').val(res.data.total_hours);
-                $('#dprice').val(res.data.price);
-                $('#dordering').val(res.data.ordering);
-                $('#dphone_number').val(res.data.phone_number);
-                $('#dskills').val(res.data.skills);
-                $('#ddescription').text(res.data.description);
-                $('#dthumbnail_logo').attr('src', res.data.photo);
-                $('#detailsModal').modal('show');
-            }
-        });
-    }
-
-    function updateCheckboxes(categories) {
-        $('.form-check-input').prop('checked', false);
-
-        if (categories && categories.length > 0) {
-            categories.forEach(function(categoryId) {
-            $('#einlineCheckbox' + categoryId).prop('checked', true); // Check the checkbox with matching category ID
-            });
-        }
-    }
 
     function editRow(obj){
         $('.eselect_trainner').selectpicker();
         $('.eselect_course').selectpicker();
         $.ajax({
             type: 'GET',
-            url: "{{route('course.edit')}}",
+            url: "{{route('document.edit')}}",
             data: {
                 key: $(obj).attr('key'),
             },
@@ -198,33 +141,25 @@
             {
                 $('#eholder').empty();
                 $('#eid').val($(obj).attr('key'));
-                $('#ecode').val(res.data.code);
-                $('#etotal_hours').val(res.data.total_hours);
-                $('#eprice').val(res.data.price);
-                $('#eordering').val(res.data.ordering);
                 $('#ename_kh').val(res.data.name_kh);
                 $('#ename_en').val(res.data.name_en);
-                $('#enumber').val(res.data.phone_number);
                 $('#estatus').val(res.data.status);
 
-                var categories = JSON.parse(res.data.course_category_id);
-                $('.eselect_course').val(categories);
+                $('.eselect_course').val(res.data.course_id);
                 $('.eselect_course .filter-option-inner-inner').text($('#ecourse_id option:selected').text());
-                $('.eselect_course').selectpicker('destroy');
-                $('.eselect_course').selectpicker();
 
                 $('.eselect_trainner').val(res.data.trainner_id);
                 $('.eselect_trainner .filter-option-inner-inner').text($('#etrainner_id option:selected').text());
 
                 $('#edescription').val(res.data.description);
-                $('#eshort_description').val(res.data.short_description);
-                $('#efilePathInput').val(res.data.thumbnail);
+                $('#efile_url').val(res.data.file_url);
+                $('#efilePathInput').val(res.data.cover);
                 $('#eholder').append(
                     $('<img>').css({
                         'height': '100%',
                         'width': '100%',
                         'object-fit': 'cover',
-                    }).attr('src', res.data.thumbnail)
+                    }).attr('src', res.data.cover)
                 );
                 $('#editModal').modal('show');
             }

@@ -2,6 +2,7 @@
 
 $en_c = [
     'Courses' => 'វគ្គបង្រៀន',
+    'Course Teaching' => 'វគ្គដែរត្រូវបង្រៀន',
     'Course Information' => 'ព័ត៌មានអំពីវគ្គសិក្សា',
     'Course Videos' => 'វីដេអូវគ្គសិក្សា',
 	'Create' => 'បង្កើតថ្មី',

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page_title', __('lb.Course Category'))
+@section('page_title', 'Course Categories')
 @section('directory', __('lb.Course Category'))
 
 @section('css')
@@ -28,11 +28,11 @@
                 </button>
                 <button class="btn btn-outline-warning" id="disableButton"
                     onclick="disabledData('{{ route('setting.course_category.data') }}')">
-                    <i class="fa fa-exclamation-triangle"></i> Hidden
+                    <i class="fa fa-exclamation-triangle"></i> {{ __('lb.Hidden') }}
                 </button>
                 <button class="btn btn-outline-danger" id="trushButton"
                     onclick="trushData('{{ route('setting.course_category.data') }}')">
-                    <i class="fa fa-trash"></i> Trush
+                    <i class="fa fa-trash"></i> {{ __ ('lb.Trash') }}
                 </button>
                 <button class="btn btn-success" id="refreshButton"
                     onclick="refreshData('{{ route('setting.course_category.data') }}')">

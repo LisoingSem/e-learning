@@ -30,9 +30,14 @@ class TrainnerController extends BaseController
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn_delete = $this->btn_delete('trainner.delete', $row->id);
-                    $btn_restore = $this->btn_restore('trainner.restore', $row->id,);
-                    return $btn_restore . ' ' . $btn_delete;
+                    $actions = '';
+                    $url_restore = route('trainner.restore');
+                    $url_delete = route('trainner.delete');
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;"  href="'.route('trainner.details', $row->id).'"><i class="mr-2 fa fa-info-circle text-info"></i> '. __("lb.Details").'</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="editRow(this)" key="'.myEncrypt($row->id).'" href="#"><i class="mr-2 fa fa-edit text-warning"></i> '. __("lb.Edit").'</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="restoreRow(this)" key="'.myEncrypt($row->id).'" url="'.$url_restore.'" _token="' . csrf_token() . '" href="#"><i class="mr-2 fa fa-recycle text-info"></i> '. __("lb.Restore").'</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="deleteRow(this)" key="'.myEncrypt($row->id).'" url="'.$url_delete.'" _token="' . csrf_token() . '" href="#"><i class="mr-2 fa fa-trash text-danger"></i> '. __("lb.Delete").'</a>';
+                        return $this->dropdownAction($actions);
                 })
                 ->addColumn('thumbnail', function ($row) {
                     $thumbnail = $row->photo;
@@ -50,9 +55,14 @@ class TrainnerController extends BaseController
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn_move_to_trush = $this->btn_move_to_trush('trainner.trush', $row->id);
-                    $btn_show = $this->btn_show('trainner.show', $row->id,);
-                    return $btn_show . ' ' . $btn_move_to_trush;
+                    $actions = '';
+                    $url_show = route('trainner.show');
+                    $url_trash = route('trainner.trush');
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;"  href="'.route('trainner.details', $row->id).'"><i class="mr-2 fa fa-info-circle text-info"></i> '. __("lb.Details").'</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="editRow(this)" key="' . myEncrypt($row->id) . '" href="#"><i class="mr-2 fa fa-edit text-warning"></i> ' . __("lb.Edit") . '</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="showRow(this)" key="' . myEncrypt($row->id) . '" url="' . $url_show . '" _token="' . csrf_token() . '" href="#"><i class="mr-2 fa fa-recycle text-info  "></i> ' . __("lb.Enable") . '</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="moveTrushRow(this)" key="' . myEncrypt($row->id) . '" url="' . $url_trash . '" _token="' . csrf_token() . '" href="#"><i class="mr-2 fa fa-trash text-danger"></i> ' . __("lb.Move Trash") . '</a>';
+                    return $this->dropdownAction($actions);
                 })
                 ->addColumn('thumbnail', function ($row) {
                     $thumbnail = $row->photo;
@@ -66,14 +76,18 @@ class TrainnerController extends BaseController
                 ->make(true);
             return response()->json($data);
         } else {
-            $data = DB::table($this->tbl)->where('status', $status)->get();
+            $data = DB::table($this->tbl)->where('trainners.status', $status)->whereNull('trainners.deleted_at')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn_hidden = $this->btn_hidden('trainner.hidden', $row->id);
-                    $btn_edit = $this->btn_edit('trainner.update', $row->id,);
-                    $btn_details = $this->btn_details('trainner.deatil', $row->id,);
-                    return  $btn_details .' '.  $btn_edit . ' ' . $btn_hidden;
+                    $actions = '';
+                    $url_hidden = route('trainner.hidden');
+                    $url_trash = route('trainner.trush');
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;"  href="'.route('trainner.details', $row->id).'"><i class="mr-2 fa fa-info-circle text-info"></i> '. __("lb.Details").'</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="editRow(this)" key="' . myEncrypt($row->id) . '" href="#"><i class="mr-2 fa fa-edit text-warning"></i> ' . __("lb.Edit") . '</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="hiddenRow(this)" key="' . myEncrypt($row->id) . '" url="' . $url_hidden . '" _token="' . csrf_token() . '" href="#"><i class="mr-2 fa fa-exclamation-triangle text-danger"></i> ' . __("lb.Disabled") . '</a>';
+                    $actions .= '<a class="dropdown-item" style="font-size: 15px;" onclick="moveTrushRow(this)" key="' . myEncrypt($row->id) . '" url="' . $url_trash . '" _token="' . csrf_token() . '" href="#"><i class="mr-2 fa fa-trash text-danger"></i> ' . __("lb.Move Trash") . '</a>';
+                    return $this->dropdownAction($actions);
                 })
                 ->addColumn('thumbnail', function ($row) {
                     $thumbnail = $row->photo;
@@ -93,6 +107,7 @@ class TrainnerController extends BaseController
         $id = myDecrypt($request->key);
         try {
             Trainner::find($id)->delete();
+            DB::table($this->tbl)->where('id', $id)->update(['status' => 0]);
             return (object)[
                 'status' => 200,
                 'data' => null,
@@ -126,7 +141,7 @@ class TrainnerController extends BaseController
         }
     }
 
-    public function deatil(Request $request){
+    public function details(Request $request){
         try {
             if(is_numeric($request->key)){
                 $id = $request->key;

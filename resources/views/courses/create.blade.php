@@ -31,7 +31,7 @@
                             <input type="number" name="ordering" id="ordering" class="form-control" required>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="thumbnail">{{__('lb.Logo')}} <span class="text-danger">*</span></label>
+                            <label for="thumbnail">{{__('lb.Thumbnail')}} <span class="text-danger">*</span></label>
                             <br>
                             <span class="input-group-btn">
                                 <a id="lfm" data-input="filePathInput" data-preview="holder"
@@ -54,24 +54,30 @@
                         </div>
                         <div class="col-sm-12 mb-3">
                             <label for="course_category_id">{{ __('lb.Course Category') }} <span class="text-danger">*</span></label>
+                            <select class="form-control select_course" data-live-search="true" id="course_category_id" name="course_category_id[]" multiple data-actions-box="true" title="Please select Course!!" required>
+                                {{--<option disabled>Please select Course!!</option>--}}
+                                @foreach ($course_categories as $item)
+                                <option value="{{ $item->id }}">{{ $item->name_en }}</option>
+                                @endforeach
+                            </select>
 
-                            <div class="row">
+                            {{--<div class="row">
                                 <div class="col-12 d-flex">
                                     @foreach ($course_categories as $item)
                                     <div class="form-check form-check-inline btn btn-outline-secondary d-flex align-items-center justify-content-center">
                                         <input class="form-check-input text-lg" type="checkbox" name="course_category_id[]"
                                             id="inlineCheckbox{{ $item->id }}" value="{{ $item->id }}">
-                                        <label class="form-check-label" for="inlineCheckbox{{ $item->id }}">{{
+                                            <label class="form-check-label" for="inlineCheckbox{{ $item->id }}">{{
                                             $item->name_en }}</label>
                                     </div>
                                     @endforeach
                                 </div>
-                            </div>
+                            </div>--}}
                         </div>
                         <div class="col-sm-12 mb-3">
                             <label for="trainner_id">{{ __('lb.Trainner') }} <span class="text-danger">*</span></label>
-                            <select class="form-control" id="trainner_id" name="trainner_id" required>
-                                <option selected disabled>Please select Trainner!!</option>
+                            <select class="form-control select_trainner" data-live-search="true" id="trainner_id" name="trainner_id" title="Please select Trainner!!"  required>
+                                {{--<option selected disabled>Please select Trainner!!</option>--}}
                                 @foreach ($trainners as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach

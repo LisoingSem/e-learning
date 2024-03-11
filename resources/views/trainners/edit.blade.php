@@ -16,11 +16,11 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="col-sm-12 mb-3">
-                            <label for="experience">Expericence <span class="text-danger">*</span></label>
+                            <label for="experience">{{ __('lb.Expericence') }} <span class="text-danger">*</span></label>
                             <input type="number" name="year_experience" id="eexperience" class="form-control" required>
                         </div>
                         <div class="col-sm-12 mb-3">
-                            <label for="gender">Gender</label>
+                            <label for="gender">{{ __('lb.Gender') }}</label>
                             <select class="form-control" id="egender" name="gender" required>
                                 <option selected disabled>Please select Gender!!</option>
                                 <option value="0">Female</option>
@@ -28,7 +28,7 @@
                             </select>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="ethumbnail">{{__('lb.Logo')}} <span class="text-danger">*</span></label>
+                            <label for="ethumbnail">{{__('lb.Photo')}} <span class="text-danger">*</span></label>
                             <br>
                             <span class="input-group-btn">
                                 <a id="elfm" data-input="efilePathInput" data-preview="eholder"
@@ -50,15 +50,15 @@
                             <input type="email" name="email" id="eemail" class="form-control" required>
                         </div>
                         <div class="col-sm-12 mb-3">
-                            <label for="phone">Phone Number<span class="text-danger">*</span></label>
+                            <label for="phone">{{ __('lb.Phone Number') }}<span class="text-danger">*</span></label>
                             <input type="number" name="phone_number" id="enumber" class="form-control" required>
                         </div>
                         <div class="col-sm-12 mb-3">
-                            <label for="skills">SKills<span class="text-danger">*</span></label>
+                            <label for="skills">{{ __('lb.Skills') }}<span class="text-danger">*</span></label>
                             <input type="text" name="skills" id="eskills" class="form-control" required>
                         </div>
                         <div class="col-sm-12 mb-3">
-                            <label for="description">Description<span class="text-danger">*</span></label>
+                            <label for="description">{{ __('lb.Description') }}<span class="text-danger">*</span></label>
                             <textarea name="description" id="edescription" class="form-control" rows="8"></textarea>
                         </div>
                     </div>

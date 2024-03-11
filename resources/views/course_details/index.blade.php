@@ -1,19 +1,27 @@
 @extends('layouts.master')
 
-@section('page_title', __('lb.Courses'))
+@section('page_title',  'Courses Details')
 @section('directory', __('lb.Course Information'))
 
 @section('css')
 <style>
-    tbody tr td:nth-child(3),
+    tbody tr
     td:nth-child(4),
     td:nth-child(5) {
         text-align: center;
     }
 
+    tbody tr td,
+    thead tr th{
+        white-space: nowrap;
+    }
+
+
     .dataTables_wrapper .row:nth-child(2) {
         overflow-y: scroll;
     }
+
+
 </style>
 @endsection
 
@@ -60,7 +68,7 @@
             <div class="col-12 col-sm-6 col-lg-4 mt-3">
                 <div class="border-left pl-2">
                     <div class="text-gray">{{ __('lb.Status') }}</div>
-                    <div class="font-weight-bold">{{ ($details->status == 1) ? 'Active' : 'Disabled' }}</div>
+                    <div class="font-weight-bold">{{ ($details->status == 1) ? __('lb.Active') : __('lb.Disabled') }}</div>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-lg-4 mt-3">
@@ -93,13 +101,11 @@
 
 <div class="card">
     <div class="card-body">
-        <div class="row">
-            <div class="col-12">
-                <h5>{{ __('lb.Course Videos') }}</h5>
-            </div>
-        </div>
         <div class="row mb-3">
-            <div class="col-sm-12 d-flex justify-content-end" style="gap: 10px">
+            <div class="col-6">
+                <h4 class="m-0">{{ __('lb.Course Videos') }}</h4>
+            </div>
+            <div class="col-6 d-flex justify-content-end" style="gap: 10px">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#createModal" id="createButton">
                     <i class="fa fa-plus-circle"></i>
                     {{__('lb.Create')}}
@@ -113,20 +119,22 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-sm table-bordered datatable" class="display" id='dataTable'
+                <table class="table table-sm table-bordered datatable" class="display" id='VideoDataTable'
                     style="overflow-x: scroll" style="width: 100%;">
                     <thead class="bg-light">
                         <tr>
                             <th width="70px">{{__('lb.No.')}}</th>
+                            <th width="10">URL</th>
                             <th>{{__('lb.English Name')}}</th>
                             <th>{{__('lb.Ordering')}}</th>
-                            <th width="100">{{__('lb.Status')}}</th>
-                            <th width="5">{{__('lb.Action')}}</th>
+                            <th width="10">{{__('lb.Status')}}</th>
+                            <th width="5"></th>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -135,23 +143,26 @@
 
 @endsection
 @section('script')
-<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
     $(document).ready(function () {
-
-        $('#lfm').filemanager('file');
-        $('#elfm').filemanager('file');
-
-        var table = $('#dataTable').DataTable({
+        var table = $('#VideoDataTable').DataTable({
             lengthMenu: [
-                [20, 50, 100, 1000],
-                [20, 50, 100, 1000]
+                [10, 20, 50, 100],
+                [10, 20, 50, 100]
             ],
             processing: true,
             serverSide: true,
             ajax: "{{ route('course.get_video_details', request()->details_id) }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
+                {
+                    data: 'file_url',
+                    name: 'file_url',
+                    render: function(data) {
+                        var $url = data;
+                        return '<a class="btn-info btn btn-xs px-3" style="font-size: 15px;" href="' + $url + '">Link</a>';
+                    }
+                },
                 {data: 'name_en', name: 'name_en'},
                 {data: 'ordering', name: 'ordering'},
                 {
@@ -189,17 +200,14 @@
                 $('#eid').val($(obj).attr('key'));
                 $('#ecode').val(res.data.code);
                 $('#eduration').val(res.data.duration);
-                $('#eprice').val(res.data.price);
+                $('#estatus').val(res.data.status);
                 $('#eordering').val(res.data.ordering);
                 $('#ename_kh').val(res.data.name_kh);
                 $('#ename_en').val(res.data.name_en);
-                $('#enumber').val(res.data.phone_number);
                 $('#estatus').val(res.data.status);
-                $('#ecourse_category_id').val(res.data.course_category_id);
                 $('#ecourse_id').val(res.data.course_id);
                 $('#etrainner_id').val(res.data.trainner_id);
                 $('#edescription').val(res.data.description);
-                $('#eshort_description').val(res.data.short_description);
                 $('#efile_url').val(res.data.file_url);
                 $('#editModal').modal('show');
             }

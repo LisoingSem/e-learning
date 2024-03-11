@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 $en_r = [
+    'Restore' => 'យកចេញពីធុងសម្រាម',
 	'Remove by company' => 'ក្រុមហ៊ុនគូសចេញ',
 	'Remove by Factory' => 'ក្រុមហ៊ុនគូសចេញ',
 	'Role' => 'តួនាទី',

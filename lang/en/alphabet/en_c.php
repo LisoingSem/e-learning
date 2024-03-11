@@ -2,6 +2,7 @@
 
 $en_c = [
     'Courses' => 'Courses',
+    'Course Teaching' => 'Course Teaching',
     'Course Information' => 'Course Information',
     'Course Videos' => 'Course Videos',
 	'Create' => 'Create',

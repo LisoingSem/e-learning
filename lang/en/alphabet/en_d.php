@@ -1,6 +1,8 @@
 <?php
 $en_d = [
     'Durations' => 'Durations',
+    'Details' => 'Details',
+    'Documents' => 'Documents',
     'Description' => 'Description',
     'Disabled' => 'Disabled',
 	'Dashboard' => 'Dashboard',

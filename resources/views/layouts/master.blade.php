@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{asset('lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.3.0/css/fixedColumns.dataTables.min.css"> -->
+
     <style>
             /* Ensure that the demo table scrolls */
     #dataTable th, #dataTable td { white-space: nowrap;}
@@ -37,16 +38,44 @@
         margin: 0 auto;
     } */
 
+    .bootstrap-select .dropdown-toggle .filter-option-inner-inner{
+        color: #495057 !important;
+    }
+
+    .bootstrap-select>.dropdown-toggle{
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        box-shadow: inset 0 0 0 transparent;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    div.dataTables_wrapper div.dataTables_length select{
+        width: 60px;
+        font-size: 15px;
+    }
+
     .dataTables_scroll
     {
         overflow:auto;
     }
 
-    /*#holder img{
-        width: 100% !important;
-        height: auto !important;
-        object-fit: cover
-    }*/
+        thead tr th{
+            white-space: nowrap;
+        }
+
+    .dataTables_wrapper .row:nth-child(2) {
+        overflow-y: scroll;
+    }
+
+
+    .custom{
+        height: 80px !important;
+        overflow-y: scroll !important;
+        top: -3px !important;
+    }
+
     </style>
     @yield('css')
 </head>
@@ -86,7 +115,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('lte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>

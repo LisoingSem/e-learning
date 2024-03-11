@@ -38,8 +38,7 @@
                         </div>
                         <div class="col-sm-12 mb-3">
                             <label for="course_id">{{ __('lb.Courses') }} <span class="text-danger">*</span></label>
-                            <select class="form-control" id="course_id" name="course_id" required>
-                                <option selected disabled>Please select Category!!</option>
+                            <select class="form-control select_course" data-live-search="true" id="course_id" name="course_id" required title="Please select Category!!">
                                 @foreach ($courses as $item)
                                 <option value="{{ $item->id }}">{{ $item->name_en }}</option>
                                 @endforeach
@@ -47,8 +46,7 @@
                         </div>
                         <div class="col-sm-12 mb-3">
                             <label for="trainner_id">{{ __('lb.Trainner') }} <span class="text-danger">*</span></label>
-                            <select class="form-control" id="trainner_id" name="trainner_id" required>
-                                <option selected disabled>Please select Trainner!!</option>
+                            <select class="form-control select_trainner" data-live-search="true" id="trainner_id" name="trainner_id" required title="Please select Trainner!!">
                                 @foreach ($trainners as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach

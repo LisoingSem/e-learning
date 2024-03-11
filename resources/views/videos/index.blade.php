@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
-@section('page_title', __('lb.Videos'))
+@section('page_title',  'Videos')
 @section('directory', __('lb.Videos'))
 
 @section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 <style>
-
-    tbody tr td:nth-child(10),
+    tbody tr td:nth-child(8),
     td:nth-child(9) {
         text-align: center;
     }
@@ -14,7 +14,6 @@
     .dataTables_wrapper .row:nth-child(2){
         overflow-y: scroll;
     }
-
 </style>
 @endsection
 
@@ -54,8 +53,8 @@
                                 <th>{{__('lb.Courses')}}</th>
                                 <th>{{__('lb.Trainner')}}</th>
                                 <th>{{__('lb.Ordering')}}</th>
-                                <th width="100">{{__('lb.Status')}}</th>
-                                <th width="100">{{__('lb.Action')}}</th>
+                                <th width="10">{{__('lb.Status')}}</th>
+                                <th width="10"></th>
                             </tr>
                         </thead>
                     </table>
@@ -70,8 +69,12 @@
 
 @endsection
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
+    $('.select_trainner').selectpicker();
+    $('.select_course   ').selectpicker();
+
     $(document).ready(function () {
 
         $('#lfm').filemanager('file');
@@ -79,8 +82,8 @@
 
         var table = $('#dataTable').DataTable({
             lengthMenu: [
-                [20, 50, 100, 1000],
-                [20, 50, 100, 1000]
+                [10, 20, 50, 100],
+                [10, 20, 50, 100]
             ],
             processing: true,
             serverSide: true,
@@ -118,12 +121,23 @@
                     orderable: false,
                     searchable: false
                 },
-            ]
+            ],
+            drawCallback: function(settings) {
+                var data = table.rows().data();
+                var dropdownMenu = $('.dropdown-menu');
+                if (data.length < 3) {
+                    dropdownMenu.addClass('custom');
+                } else {
+                    dropdownMenu.removeClass('custom');
+                }
+            }
         });
 
     });
 
     function editRow(obj){
+        $('.eselect_trainner').selectpicker();
+        $('.eselect_course').selectpicker();
         $.ajax({
             type: 'GET',
             url: "{{route('video.edit')}}",
@@ -139,13 +153,14 @@
                 $('#eordering').val(res.data.ordering);
                 $('#ename_kh').val(res.data.name_kh);
                 $('#ename_en').val(res.data.name_en);
-                $('#enumber').val(res.data.phone_number);
                 $('#estatus').val(res.data.status);
-                $('#ecourse_category_id').val(res.data.course_category_id);
-                $('#ecourse_id').val(res.data.course_id);
-                $('#etrainner_id').val(res.data.trainner_id);
+
+                $('.eselect_course').val(res.data.course_id);
+                $('.eselect_course .filter-option-inner-inner').text($('#ecourse_id option:selected').text());
+
+                $('.eselect_trainner').val(res.data.trainner_id);
+                $('.eselect_trainner .filter-option-inner-inner').text($('#etrainner_id option:selected').text());
                 $('#edescription').val(res.data.description);
-                $('#eshort_description').val(res.data.short_description);
                 $('#efile_url').val(res.data.file_url);
                 $('#editModal').modal('show');
             }

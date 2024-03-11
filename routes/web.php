@@ -31,11 +31,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function(){
                 Route::get('/home', 'DashboardController@home')->name('home');
 
                 //Trainner
-                Route::get('/trainner', 'TrainnerController@index')->name('trainner.index');
+                Route::get('/trainner/list', 'TrainnerController@index')->name('trainner.index');
                 Route::get('/trainner/data', 'TrainnerController@data')->name('trainner.data');
                 Route::post('/trainner/save', 'TrainnerController@save')->name('trainner.save');
                 Route::get('/trainner/edit', 'TrainnerController@edit')->name('trainner.edit');
-                Route::get('/trainner/deatil', 'TrainnerController@deatil')->name('trainner.deatil');
+                Route::get('/trainner/details', 'TrainnerController@details')->name('trainner.details');
                 Route::post('/trainner/update', 'TrainnerController@update')->name('trainner.update');
                 Route::post('/trainner/hidden', 'TrainnerController@hidden')->name('trainner.hidden');
                 Route::post('/trainner/show', 'TrainnerController@show')->name('trainner.show');
@@ -43,8 +43,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function(){
                 Route::post('/trainner/restore', 'TrainnerController@restore')->name('trainner.restore');
                 Route::delete('/trainner/delete', 'TrainnerController@delete')->name('trainner.delete');
 
+                 //Document
+                 Route::get('/document/list', 'CourseDocumentController@index')->name('document.index');
+                 Route::get('/document/data', 'CourseDocumentController@data')->name('document.data');
+                 Route::post('/document/save', 'CourseDocumentController@save')->name('document.save');
+                 Route::get('/document/edit', 'CourseDocumentController@edit')->name('document.edit');
+                 Route::get('/document/deatil', 'CourseDocumentController@deatil')->name('document.deatil');
+                 Route::post('/document/update', 'CourseDocumentController@update')->name('document.update');
+                 Route::post('/document/hidden', 'CourseDocumentController@hidden')->name('document.hidden');
+                 Route::post('/document/show', 'CourseDocumentController@show')->name('document.show');
+                 Route::delete('/document/trush', 'CourseDocumentController@trush')->name('document.trush');
+                 Route::post('/document/restore', 'CourseDocumentController@restore')->name('document.restore');
+                 Route::delete('/document/delete', 'CourseDocumentController@delete')->name('document.delete');
+
                  //Video
-                Route::get('/video', 'CourseVideoController@index')->name('video.index');
+                Route::get('/video/list', 'CourseVideoController@index')->name('video.index');
                 Route::get('/video/data', 'CourseVideoController@data')->name('video.data');
                 Route::post('/video/save', 'CourseVideoController@save')->name('video.save');
                 Route::get('/video/edit', 'CourseVideoController@edit')->name('video.edit');
@@ -61,6 +74,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function(){
                 Route::get('/course/data', 'CourseController@data')->name('course.data');
                 Route::get('/course/deatils/{details_id?}', 'CourseController@details')->name('course.details');
                 Route::get('/course/get_video_details/{details_id?}', 'CourseController@getVideoData')->name('course.get_video_details');
+                Route::get('/course/get_document_details/{details_id?}', 'CourseController@getDocumentData')->name('course.get_document_details');
                 Route::post('/course/save', 'CourseController@save')->name('course.save');
                 Route::get('/course/edit', 'CourseController@edit')->name('course.edit');
                 Route::post('/course/update', 'CourseController@update')->name('course.update');
@@ -77,8 +91,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function(){
                     })->name('settings');
 
                     //course category
-                    Route::get('/course-category-list', 'Setting\CourseCategoryController@index')->name('course_category.index');
-                    Route::get('/course-category-list/data', 'Setting\CourseCategoryController@data')->name('course_category.data');
+                    Route::get('/course-category/list', 'Setting\CourseCategoryController@index')->name('course_category.index');
+                    Route::get('/course-category/data', 'Setting\CourseCategoryController@data')->name('course_category.data');
                     Route::post('/course-category/save', 'Setting\CourseCategoryController@save')->name('course_category.save');
                     Route::get('/course-category/edit', 'Setting\CourseCategoryController@edit')->name('course_category.edit');
                     Route::post('/course-category/update', 'Setting\CourseCategoryController@update')->name('course_category.update');
@@ -102,11 +116,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function(){
                     Route::post('/user/update', 'Setting\UserController@update')->name('user.update');
                     Route::post('/user/delete', 'Setting\UserController@delete')->name('user.delete');
 
-                    Route::get('/user-fc-branch-by/{id}', 'Setting\UserFactoryBranchController@index')->name('user_factory_branch.index');
-                    Route::post('/user-fc-branch/save', 'Setting\UserFactoryBranchController@save')->name('user_factory_branch.save');
-                    Route::get('/user-fc-branch/edit', 'Setting\UserFactoryBranchController@edit')->name('user_factory_branch.edit');
-                    Route::post('/user-fc-branch/update', 'Setting\UserFactoryBranchController@update')->name('user_factory_branch.update');
-                    Route::post('/user-fc-branch/delete', 'Setting\UserFactoryBranchController@delete')->name('user_factory_branch.delete');
                 });
 
                 // system settings

@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 $en_r = [
+    'Restore' => 'Restore',
 	'Reports' => 'Reports',
 	'Roles' => 'Roles',
 	'Registration Number' => 'Registration Number',

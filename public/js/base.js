@@ -1,4 +1,7 @@
 // Base javascript action
+var lang = document.documentElement.lang;
+
+
 function translateMessage(messageKey) {
     var translations = {
         en: {
@@ -9,7 +12,7 @@ function translateMessage(messageKey) {
 
             "enable.title": "Confirmation to Enable ",
             "enable.no": "NO",
-            "enable.yes": "Disabled",
+            "enable.yes": "Enable",
             "enable.text": "<span class='text-info'>Are you sure ? Are you wanted to enabled it ?</span>",
 
             "trash.title": "Confirmation to move to Trash ",
@@ -28,34 +31,34 @@ function translateMessage(messageKey) {
             "delete.text": "<span class='text-info'>Are you sure ? Are you wanted to delete it ?</span>",
         },
         kh: {
-            "disable.title": "ការបញ្ជាក់ដើម្បីបិទ",
-            "disable.no": "មិនធ្វើ",
-            "disable.yes": "បិទ",
+            "disable.title": "ការបញ្ជាក់ដើម្បីបិទដំណើរការ",
+            "disable.no": "បោះបង់ ",
+            "disable.yes": "បិទដំណើរការ",
             "disable.text": "<span class='text-warning'>តើ​អ្នក​ប្រាកដ​ឬ​អត់ ? តើអ្នកចង់បិទវាទេ ?</span>",
 
-            "enable.title": "ការបញ្ជាក់ដើម្បីបើក",
-            "enable.no": "មិនធ្វើ",
-            "enable.yes": "បើក",
-            "enable.text": "<span class='text-info'>តើ​អ្នក​ប្រាកដ​ឬ​អត់ ? តើអ្នកចង់បើកវាទេ ?</span>",
+            "enable.title": "ការបញ្ជាក់ដើម្បីបើកដំណើរការ",
+            "enable.no": "បោះបង់",
+            "enable.yes": "បើកដំណើរការ",
+            "enable.text": "<span class='text-info'>តើ​អ្នក​ប្រាកដ​ឬ​អត់ ? តើអ្នកចង់បើកដំណើរការវាវិញមែនឬទេ ?</span>",
 
             "trash.title": "ការបញ្ជាក់ដើម្បីផ្លាស់ទីទៅធុងសំរាម",
-            "trash.no": "មិនធ្វើ",
-            "trash.yes": "ផ្លាស់ទីសំរាម",
+            "trash.no": "បោះបង់",
+            "trash.yes": "ផ្លាស់ទីទៅធុងសំរាម",
             "trash.text": "<span class='text-danger'>តើ​អ្នក​ប្រាកដ​ឬ​អត់ ? តើអ្នកចង់ផ្លាស់ទីវាទៅធុងសំរាមទេ ?</span>",
 
             "re.trash.title": "ការបញ្ជាក់ដើម្បីស្ដារពីធុងសំរាម",
-            "re.trash.no": "មិនធ្វើ",
+            "re.trash.no": "បោះបង់",
             "re.trash.yes": "ស្ដារឡើងវិញ",
             "re.trash.text": "<span class='text-info'>តើ​អ្នក​ប្រាកដ​ឬ​អត់ ? តើអ្នកចង់ផ្លាស់ទីវាទៅធុងសំរាមទេ ?</span>",
 
             "delete.title": "ការបញ្ជាក់ដើម្បីលុប",
-            "delete.no": "មិនធ្វើ",
+            "delete.no": "បោះបង់",
             "delete.yes": "លុប",
             "delete.text": "<span class='text-info'>តើ​អ្នក​ប្រាកដ​ឬ​អត់ ? តើអ្នកចង់លុបវាទេ?</span>",
         },
     };
 
-    var lang = document.documentElement.lang; // Retrieve the value of the lang attribute
+     // Retrieve the value of the lang attribute
     var translation = translations[lang][messageKey]; // Retrieve the translated message for the detected language
 
     if (translation) {
@@ -139,6 +142,8 @@ function frm_update(evt, router, is_clear_form = 1, is_reload_datatable = 1) {
                 }
                 if (is_reload_datatable == 1) {
                     $("#dataTable").DataTable().ajax.reload();
+                    $("#VideoDataTable").DataTable().ajax.reload();
+                    $("#DocumentDataTable").DataTable().ajax.reload();
                 }
                 setTimeout(() => {
                     $("#editModal").modal("hide");

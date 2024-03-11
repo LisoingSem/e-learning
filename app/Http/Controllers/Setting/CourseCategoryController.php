@@ -89,7 +89,7 @@ class CourseCategoryController extends BaseController
         }
     }
 
-    public function trush(Request $request){
+    public function trash(Request $request){
         $id = myDecrypt($request->key);
         try {
             CourseCategory::find($id)->delete();

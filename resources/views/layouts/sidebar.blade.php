@@ -39,6 +39,15 @@
 
                 {{--@check("trainner.index")--}}
                 <li class="nav-item">
+                    <a href="{{ route('document.index') }}" class="nav-link {{ activeMenu('document.index') }}">
+                        <i class="nav-icon fa fa-book"></i>
+                        <p>
+                            {{__('lb.Documents')}}
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('trainner.index') }}" class="nav-link {{ activeMenu('trainner.index') }}">
                         <i class="nav-icon fas fa-book-reader"></i>
                         <p>
@@ -46,6 +55,7 @@
                         </p>
                     </a>
                 </li>
+
                 @check("settings")
                 <li @class(['menu-open'=> !!Request::is('setting/*'), 'nav-item']) id="operation_setting_menu">
                     <a href="#" class="nav-link">

@@ -1,6 +1,7 @@
 <?php
 
 $en_e = [
+    'Enable' => 'Enable',
 	'Edit' => 'Edit',
 	'Expense Categories' => 'Expense Categories',
 	'Expense Category' => 'Expense Category',

@@ -23,6 +23,13 @@
                             <label for="eduration">{{ __('lb.Durations') }} <span class="text-danger">*</span></label>
                             <input type="number" name="duration" id="eduration" class="form-control" required>
                         </div>
+                        <div class="col-sm-12 mb-3">
+                            <label for="estatus">Status</label>
+                            <select class="form-control" id="estatus" name="status">
+                                <option value="1">Active</option>
+                                <option value="0">Disable</option>
+                            </select>
+                        </div>
                         <div class="col-12 mb-3">
                             <label for="efile_url">{{ __('lb.Video URL') }} <span class="text-danger">*</span></label>
                             <input type="text" name="file_url" id="efile_url" class="form-control" required>
@@ -70,3 +77,4 @@
         </form>
     </div>
 </div>
+

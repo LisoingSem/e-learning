@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 $en_p = [
+    'Photo' => 'Photo',
 	'Password' => 'Password',
 	'Please enter your password' => 'Please enter your password',
 	'Please enter your username' => 'Please enter your username',

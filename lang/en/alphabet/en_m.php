@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 $en_m = [
 	'Major' => 'Major',
+    'Move Trash' => 'Move Trash',
 	'Male' => 'Male',
 	'Mother Name' => 'Mother Name',
 	'My Profile' => 'My Profile',

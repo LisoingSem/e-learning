@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg">
         <form id="form_create" class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailsModalLabel">Trainner Details</h5>
+                <h5 class="modal-title" id="detailsModalLabel">{{ __('lb.Trainner Details') }}</h5>
                 <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
                     <i class="fa fa-times"></i>
                 </button>
@@ -25,36 +25,36 @@
                                 style="margin-top: -5px; font-size: 20px" readonly>
 
                             <div class="d-flex align-items-center-center justify-content-center mt-1" style="gap: 10px">
-                                <label class="m-0 font-weight-light">Gender :</label>
-                                <span id="dgender" class="font-weight-bold text-center">hsdfs</span>
+                                <label class="m-0 font-weight-light">{{ __('lb.Gender') }} :</label>
+                                <span id="dgender" class="font-weight-bold text-center">null</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-8">
-                        <h4 class="pl-2 text-info mb-3">Information Details</h4>
+                        <h4 class="pl-2 text-info mb-3">{{ __('lb.Information Details') }}</h4>
                         <div class="col-sm-12 mb-2">
-                            <label class="m-0 font-weight-light">Email</label>
+                            <label class="m-0 font-weight-light">{{ __('lb.Email') }}</label>
                             <input id="demail" class="form-control border-0 bg-transparent p-0 font-weight-bold"
                                 style="margin-top: -5px" readonly>
                         </div>
                         <div class="col-sm-12 mb-2">
-                            <label class="m-0 font-weight-light">Phone Number</label>
+                            <label class="m-0 font-weight-light">{{ __('lb.Phone Number') }}</label>
                             <input id="dphone_number" class="form-control border-0 bg-transparent p-0 font-weight-bold"
                                 style="margin-top: -5px" readonly>
                         </div>
                         <div class="col-sm-12 mb-2">
-                            <label class="m-0 font-weight-light">Expericence</label>
+                            <label class="m-0 font-weight-light">{{ __('lb.Expericence') }}</label>
                             <input id="dyear_experience"
                                 class="form-control border-0 bg-transparent p-0 font-weight-bold"
                                 style="margin-top: -5px" readonly>
                         </div>
                         <div class="col-sm-12 mb-2">
-                            <label class="m-0 font-weight-light">Skills</label>
+                            <label class="m-0 font-weight-light">{{ __('lb.Skills') }}</label>
                             <input id="dskills" class="form-control border-0 bg-transparent p-0 font-weight-bold"
                                 style="margin-top: -5px" readonly>
                         </div>
                         <div class="col-sm-12 mb-2">
-                            <label class="m-0 font-weight-light">Description</label>
+                            <label class="m-0 font-weight-light">{{ __('lb.Description') }}</label>
                             <p id="ddescription" class="text-wrap text-break font-weight-bold" style="color: #495057;">
                             </p>
                         </div>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <h5>Course Teaching:</h5>
+                        <h5>{{ __('lb.Course Teaching') }}:</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -70,11 +70,11 @@
                         <table class="table table-bordered">
                             <thead class="table-active">
                                 <tr>
-                                    <th class="text-center">Code</th>
-                                    <th class="text-center">Name English</th>
-                                    <th class="text-center">Name Khmer</th>
-                                    <th class="text-center">Price</th>
-                                    <th class="text-center">Total Hours</th>
+                                    <th class="text-center">{{ __('lb.Code') }}</th>
+                                    <th class="text-center">{{ __('lb.English Name') }}</th>
+                                    <th class="text-center">{{ __('lb.Khmer Name') }}</th>
+                                    <th class="text-center">{{ __('lb.Price') }}</th>
+                                    <th class="text-center">{{ __('lb.Total Hours') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="tableDeatail"></tbody>

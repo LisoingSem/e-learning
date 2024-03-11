@@ -1,6 +1,7 @@
 <?php
 
 $en_s = [
+    'Skills' => 'Skills',
     'Short Description' => 'Short Description',
 	'Settings' => 'Settings',
 	'Save' => 'Save',

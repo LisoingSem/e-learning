@@ -2,8 +2,10 @@
 
 $en_t = [
     'Trash' => 'Trash',
+    'Thumbnail' => 'Thumbnail',
     'Total Hours'   => 'Total Hours',
     'Trainner' => 'Trainner',
+    'Trainner Details' => 'Trainner Details',
 	'Translation' => 'Translation',
 	'Thailand Verification Number' => 'Thailand Verification Number',
 	'Travel Letter Number' => 'Travel Letter Number',
